@@ -1,4 +1,4 @@
-import {layer1Data, layer2Data, layer3Data} from "./load_data";
+import {layer1DataPromise, layer2DataPromise, layer3DataPromise} from "./load_data";
 
 export let map = L.map("mapid", {preferCanvas: true});
 export let layerControl = L.control.layers().addTo(map);
@@ -41,7 +41,7 @@ map.on("baselayerchange", function(e) {
 async function renderLayer1Group() {
 
   let layer1Group = L.layerGroup();
-  let data = await layer1Data;
+  let data = await layer1DataPromise;
 
   data.forEach((f) => {
     layer1Group.addLayer(
@@ -64,7 +64,7 @@ renderLayer1Group();
 async function renderLayer2Group() {
 
   let layer2Group = L.layerGroup();
-  let data = await layer2Data;
+  let data = await layer2DataPromise;
 
   data.forEach((f) => {
     layer2Group.addLayer(
@@ -87,7 +87,7 @@ renderLayer2Group();
 async function renderLayer3Group() {
 
   let layer3Group = L.layerGroup();
-  let data = await layer3Data;
+  let data = await layer3DataPromise;
 
   data.forEach((d) => {
     layer3Group.addLayer(

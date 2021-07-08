@@ -1,8 +1,8 @@
 import axios from "axios";
 
-export let layer1Data = loadLayer1Data();
-export let layer2Data = loadLayer2Data();
-export let layer3Data = loadLayer3Data();
+export let layer1DataPromise = loadLayer1Data();
+export let layer2DataPromise = loadLayer2Data();
+export let layer3DataPromise = loadLayer3Data();
 
 // js-layer1.json
 async function loadLayer1Data() {
