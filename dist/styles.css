@@ -22,7 +22,7 @@ html, body {
     bottom: 0;
 }
 
-.form_input {
+.form__input {
     font-size: 16px;
     padding: 10px;
     display: block;
@@ -46,4 +46,28 @@ html, body {
 .header {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     font-size: 13px;
+}
+
+.presentation {
+    position: absolute;
+    left: 54px;
+    top: 10px;
+    z-index: 10000;
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #fff;
+    border: 2px solid rgba(0,0,0,0.2);
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .presentation__img {
+    height: 32px; 
+  }
+  
+.presentation:hover {
+    background-color: #f4f4f4;
 }

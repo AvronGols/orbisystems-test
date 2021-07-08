@@ -37,6 +37,22 @@ map.on("moveend", function(e) {
 
 map.on("baselayerchange", function(e) {
   localStorage.setItem("activeBaseLayer", e.name);
+
+  let layers = [] 
+  switch(e.name) {
+    case 'layer1':
+      layer1Group.eachLayer(layer => layers.push(layer));
+      break;
+    case 'layer2':
+      layer2Group.eachLayer(layer => layers.push(layer));
+      break;
+    case 'layer3':
+      layer3Group.eachLayer(layer => layers.push(layer));
+      break;
+  }
+
+  var group = L.featureGroup(layers);
+  map.fitBounds(group.getBounds());
 });
 
 // js-layer1.json
