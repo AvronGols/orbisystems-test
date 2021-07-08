@@ -51,7 +51,7 @@ map.on("baselayerchange", function(e) {
       break;
   }
 
-  var group = L.featureGroup(layers);
+  let group = L.featureGroup(layers);
   map.fitBounds(group.getBounds());
 });
 
