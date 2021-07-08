@@ -36,7 +36,6 @@ map.on("baselayerchange", function(e) {
   localStorage.setItem("activeBaseLayer", e.name);
 });
 
-
 // js-layer1.json
 async function renderLayer1Group() {
 
@@ -59,7 +58,6 @@ async function renderLayer1Group() {
 }
 renderLayer1Group();
 
-
 // bars.geojson
 async function renderLayer2Group() {
 
@@ -81,7 +79,6 @@ async function renderLayer2Group() {
   layerControl.addBaseLayer(layer2Group, "layer2");
 }
 renderLayer2Group();
-
 
 // portals.csv
 async function renderLayer3Group() {

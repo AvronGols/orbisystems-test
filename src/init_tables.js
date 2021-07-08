@@ -6,7 +6,6 @@ map.on('baselayerchange', function(e) {
     while (eGridDiv.firstChild) {
       eGridDiv.removeChild(eGridDiv.lastChild);
     }
-
     switch(e.name) {
       case 'layer1':
         renderLayer1Table();
@@ -20,18 +19,19 @@ map.on('baselayerchange', function(e) {
     }
   });
   
-  switch(localStorage.getItem("activeBaseLayer")) {
-    case 'layer1':
-      renderLayer1Table();
-      break;
-    case 'layer2':
-      renderLayer2Table();
-      break;
-    case 'layer3':
-      renderLayer3Table();
-      break;
-  }
+switch(localStorage.getItem("activeBaseLayer")) {
+  case 'layer1':
+    renderLayer1Table();
+    break;
+  case 'layer2':
+    renderLayer2Table();
+    break;
+  case 'layer3':
+    renderLayer3Table();
+    break;
+}
 
+// js-layer1.json
 async function renderLayer1Table() {
 
   let data = await layer1DataPromise;
@@ -52,9 +52,7 @@ async function renderLayer1Table() {
 
   const eGridDiv = document.querySelector('#grid');
   const gridOptions = {
-    defaultColDef: {
-        resizable: true,
-    },
+    defaultColDef: { resizable: true },
     columnDefs: columnDefs,
     rowData: rowData
   };
@@ -62,6 +60,7 @@ async function renderLayer1Table() {
   gridOptions.api.sizeColumnsToFit();
 }
 
+// bars.geojson
 async function renderLayer2Table() {
 
   let data = await layer2DataPromise;
@@ -82,9 +81,7 @@ async function renderLayer2Table() {
 
   const eGridDiv = document.querySelector('#grid');
   const gridOptions = {
-    defaultColDef: {
-        resizable: true,
-    },
+    defaultColDef: { resizable: true },
     columnDefs: columnDefs,
     rowData: rowData
   };
@@ -92,6 +89,7 @@ async function renderLayer2Table() {
   gridOptions.api.sizeColumnsToFit();
 }
 
+// portals.csv
 async function renderLayer3Table() {
 
   let data = await layer3DataPromise;
@@ -111,9 +109,7 @@ async function renderLayer3Table() {
 
   const eGridDiv = document.querySelector('#grid');
   const gridOptions = {
-    defaultColDef: {
-        resizable: true,
-    },
+    defaultColDef: { resizable: true },
     columnDefs: columnDefs,
     rowData: rowData
   };
