@@ -2,6 +2,9 @@ import {layer1DataPromise, layer2DataPromise, layer3DataPromise} from "./load_da
 
 export let map = L.map("mapid", {preferCanvas: true});
 export let layerControl = L.control.layers().addTo(map);
+export let layer1Group = L.layerGroup();
+export let layer2Group = L.layerGroup();
+export let layer3Group = L.layerGroup();
 
 L.tileLayer(
   "https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw",
@@ -39,12 +42,11 @@ map.on("baselayerchange", function(e) {
 // js-layer1.json
 async function renderLayer1Group() {
 
-  let layer1Group = L.layerGroup();
   let data = await layer1DataPromise;
 
   data.forEach((f) => {
     layer1Group.addLayer(
-      L.circleMarker(f.geometry.coordinates).bindPopup(
+      L.circleMarker(f.geometry.coordinates.reverse()).bindPopup(
         `<b>${f.properties.name}</b><br/>${f.properties.adres}`
       )
     );
@@ -61,7 +63,6 @@ renderLayer1Group();
 // bars.geojson
 async function renderLayer2Group() {
 
-  let layer2Group = L.layerGroup();
   let data = await layer2DataPromise;
 
   data.forEach((f) => {
@@ -83,7 +84,6 @@ renderLayer2Group();
 // portals.csv
 async function renderLayer3Group() {
 
-  let layer3Group = L.layerGroup();
   let data = await layer3DataPromise;
 
   data.forEach((d) => {
