@@ -1,7 +1,11 @@
 import axios from "axios";
 
+export let layer1Data = loadLayer1Data();
+export let layer2Data = loadLayer2Data();
+export let layer3Data = loadLayer3Data();
+
 // js-layer1.json
-export async function getLayer1Data() {
+async function loadLayer1Data() {
   return new Promise((resolve) => {
     axios.get("js-layer1.json").then((response) => {
       console.log(response.data.features);
@@ -11,7 +15,7 @@ export async function getLayer1Data() {
 }
 
 // bars.geojson
-export async function getLayer2Data() {
+async function loadLayer2Data() {
   return new Promise((resolve) => {
     axios.get("bars.geojson").then((response) => {
       console.log(response.data.features);
@@ -21,7 +25,7 @@ export async function getLayer2Data() {
 }
 
 // portals.csv
-export async function getLayer3Data() {
+async function loadLayer3Data() {
 
   return new Promise((resolve) => {
     axios({
