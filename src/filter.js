@@ -8,31 +8,31 @@ map.on('baselayerchange', function(e) {
   initFilter()
 });
 
+let input = document.querySelector('#filter-text-box');
+input.addEventListener('input', async () => {
+  
+  localStorage.setItem("filterValue", document.getElementById('filter-text-box').value);
+  stopPresentation();
+
+  let gridOptions = await gridOptionsPromise;
+  gridOptions.api.setQuickFilter(document.getElementById('filter-text-box').value);
+  
+  let activeLayer = localStorage.getItem("activeBaseLayer");
+  switch (activeLayer) {
+    case "layer1":
+      layer1MapFilter(gridOptions);
+      break;
+    case "layer2":
+      layer2MapFilter(gridOptions);
+      break;
+    case "layer3":
+      layer3MapFilter(gridOptions);
+      break;
+  }
+})
+
 async function initFilter() {
   let gridOptions = await gridOptionsPromise;
-
-  let input = document.querySelector('#filter-text-box');
-  input.addEventListener('input', e => {
-    
-    localStorage.setItem("filterValue", document.getElementById('filter-text-box').value);
-    stopPresentation();
-
-    setTimeout(1000);
-		gridOptions.api.setQuickFilter(document.getElementById('filter-text-box').value);
-    
-    let activeLayer = localStorage.getItem("activeBaseLayer");
-    switch (activeLayer) {
-      case "layer1":
-        layer1MapFilter(gridOptions);
-        break;
-      case "layer2":
-        layer2MapFilter(gridOptions);
-        break;
-      case "layer3":
-        layer3MapFilter(gridOptions);
-        break;
-    }
-  })
 
 	if (localStorage.getItem("filterValue") != null) {
 
