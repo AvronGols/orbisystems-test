@@ -1,10 +1,18 @@
 import {map, layer1Group, layer2Group, layer3Group} from "./map";
 
+let timer;
+let stopPresentationFlag = true;
 let lastIndex = 0;
 let play = document.querySelector(".presentation");
+let image = document.querySelector(".presentation__img");
 play.addEventListener("click", (e) => {
-  lastIndex = 0;
-  showPresentation();
+  if(!stopPresentationFlag) {
+    stopPresentation();
+  } else {
+    stopPresentationFlag = false;
+    image.src = './stop-button.svg'
+    showPresentation()
+  }
 });
 
 function showPresentation() {
@@ -28,5 +36,14 @@ function showPresentation() {
   if (lastIndex == layers.length) {
     lastIndex = 0;
   }
-  setTimeout(() => showPresentation(), 1000);
+  if (!stopPresentationFlag) {
+    timer = setTimeout(() => showPresentation(), 1000);
+  }
+}
+
+export function stopPresentation() {
+  clearTimeout(timer);
+  lastIndex = 0;
+  stopPresentationFlag = true;
+  image.src = './play.svg';
 }

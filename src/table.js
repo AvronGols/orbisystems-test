@@ -1,5 +1,6 @@
 import {map, layer1Group, layer2Group, layer3Group} from "./map";
 import {layer1DataPromise, layer2DataPromise, layer3DataPromise} from "./load_data";
+import {stopPresentation} from "./presentation"
 
 export let gridOptionsPromise;
 
@@ -70,6 +71,7 @@ async function initLayer1Table() {
           map.setView([e.data.lat, e.data.lng], 18)
         }
       })
+      stopPresentation();
     }
   };
 
@@ -116,6 +118,7 @@ async function initLayer2Table() {
             map.setView([e.data.lat, e.data.lng], 18)
           }
         })
+        stopPresentation();
       }
   };
   new agGrid.Grid(eGridDiv, gridOptions);
@@ -156,6 +159,7 @@ async function initLayer3Table() {
             map.setView([e.data.lat, e.data.lon], 18)
           }
         })
+        stopPresentation();
       }
   };
   new agGrid.Grid(eGridDiv, gridOptions);

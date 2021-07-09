@@ -1,5 +1,6 @@
 import {map} from "./map";
 import {gridOptionsPromise} from "./table" 
+import {stopPresentation} from "./presentation"
 
 map.on('baselayerchange', function(e) {
   document.getElementById('filter-text-box').value = null;
@@ -13,6 +14,7 @@ async function initFilter() {
   input.addEventListener('input', e => {
 		gridOptions.api.setQuickFilter(document.getElementById('filter-text-box').value);
 		localStorage.setItem("filterValue", document.getElementById('filter-text-box').value);
+    stopPresentation();
   })
 
 	if (localStorage.getItem("filterValue") != null) {
@@ -20,4 +22,4 @@ async function initFilter() {
 		gridOptions.api.setQuickFilter(document.getElementById('filter-text-box').value);
 	}
 };
-initFilter()
+initFilter();

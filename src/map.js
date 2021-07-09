@@ -1,4 +1,5 @@
 import {layer1DataPromise, layer2DataPromise, layer3DataPromise} from "./load_data";
+import {stopPresentation} from "./presentation"
 
 export let map = L.map("mapid", {preferCanvas: true});
 export let layerControl = L.control.layers().addTo(map);
@@ -53,6 +54,8 @@ map.on("baselayerchange", function(e) {
 
   let group = L.featureGroup(layers);
   map.fitBounds(group.getBounds());
+
+  stopPresentation();
 });
 
 // js-layer1.json
