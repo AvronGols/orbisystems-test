@@ -63,6 +63,7 @@ async function initLayer1Table() {
     defaultColDef: { resizable: true },
     columnDefs: columnDefs,
     rowData: rowData,
+
     onRowClicked: function(e) {
       layer1Group.eachLayer((layer) => {
         const coords = layer.getLatLng()
@@ -73,6 +74,7 @@ async function initLayer1Table() {
       })
       stopPresentation();
     }
+
   };
 
   new agGrid.Grid(eGridDiv, gridOptions);
@@ -110,6 +112,7 @@ async function initLayer2Table() {
     defaultColDef: { resizable: true },
     columnDefs: columnDefs,
     rowData: rowData,
+
     onRowClicked: function(e) {
       layer2Group.eachLayer((layer) => {
           const coords = layer.getLatLng()
@@ -120,6 +123,7 @@ async function initLayer2Table() {
         })
         stopPresentation();
       }
+
   };
   new agGrid.Grid(eGridDiv, gridOptions);
   gridOptions.api.sizeColumnsToFit();
@@ -150,6 +154,7 @@ async function initLayer3Table() {
     defaultColDef: { resizable: true },
     columnDefs: columnDefs,
     rowData: rowData,
+
     onRowClicked: function(e) {
         console.log(e);
         layer3Group.eachLayer((layer) => {
@@ -161,6 +166,7 @@ async function initLayer3Table() {
         })
         stopPresentation();
       }
+      
   };
   new agGrid.Grid(eGridDiv, gridOptions);
   gridOptions.api.sizeColumnsToFit();

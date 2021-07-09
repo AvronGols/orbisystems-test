@@ -52,8 +52,10 @@ map.on("baselayerchange", function(e) {
       break;
   }
 
-  let group = L.featureGroup(layers);
-  map.fitBounds(group.getBounds());
+  if (layers.length != 0) {
+    let group = L.featureGroup(layers);
+    map.fitBounds(group.getBounds());
+  }
 
   stopPresentation();
 });

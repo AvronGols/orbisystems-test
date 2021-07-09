@@ -27,6 +27,7 @@ function showPresentation() {
       break;
     case "layer3":
       layer3Group.eachLayer((layer) => layers.push(layer));
+      break;
   }
   const layer = layers[lastIndex];
   const coords = layer.getLatLng();
