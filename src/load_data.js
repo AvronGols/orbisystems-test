@@ -26,7 +26,6 @@ async function loadLayer2Data() {
 
 // portals.csv
 async function loadLayer3Data() {
-
   return new Promise((resolve) => {
     axios({
       url: "portals.csv",

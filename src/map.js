@@ -56,7 +56,7 @@ map.on("baselayerchange", function(e) {
 });
 
 // js-layer1.json
-async function renderLayer1Group() {
+async function initLayer1Group() {
 
   let data = await layer1DataPromise;
 
@@ -74,10 +74,10 @@ async function renderLayer1Group() {
 
   layerControl.addBaseLayer(layer1Group, "layer1");
 }
-renderLayer1Group();
+initLayer1Group();
 
 // bars.geojson
-async function renderLayer2Group() {
+async function initLayer2Group() {
 
   let data = await layer2DataPromise;
 
@@ -95,10 +95,10 @@ async function renderLayer2Group() {
 
   layerControl.addBaseLayer(layer2Group, "layer2");
 }
-renderLayer2Group();
+initLayer2Group();
 
 // portals.csv
-async function renderLayer3Group() {
+async function initLayer3Group() {
 
   let data = await layer3DataPromise;
 
@@ -116,4 +116,4 @@ async function renderLayer3Group() {
 
   layerControl.addBaseLayer(layer3Group, "layer3");
 }
-renderLayer3Group();
+initLayer3Group();

@@ -1,5 +1,5 @@
-import {map} from "./init_map";
-import {gridOptionsPromise} from "./init_tables" 
+import {map} from "./map";
+import {gridOptionsPromise} from "./table" 
 
 map.on('baselayerchange', function(e) {
   document.getElementById('filter-text-box').value = null;

@@ -1,4 +1,4 @@
-import "./init_map";
-import "./init_tables";
+import "./map";
+import "./table";
 import "./filter";
 import "./presentation";

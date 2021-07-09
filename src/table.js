@@ -1,4 +1,4 @@
-import {map, layer1Group, layer2Group, layer3Group} from "./init_map";
+import {map, layer1Group, layer2Group, layer3Group} from "./map";
 import {layer1DataPromise, layer2DataPromise, layer3DataPromise} from "./load_data";
 
 export let gridOptionsPromise;
@@ -10,31 +10,31 @@ map.on('baselayerchange', function(e) {
   }
   switch(e.name) {
     case 'layer1':
-      gridOptionsPromise = renderLayer1Table();
+      gridOptionsPromise = initLayer1Table();
       break;
     case 'layer2':
-      gridOptionsPromise = renderLayer2Table();
+      gridOptionsPromise = initLayer2Table();
       break;
     case 'layer3':
-      gridOptionsPromise = renderLayer3Table();
+      gridOptionsPromise = initLayer3Table();
       break;
   }
 });
   
 switch(localStorage.getItem("activeBaseLayer")) {
   case 'layer1':
-    gridOptionsPromise = renderLayer1Table();
+    gridOptionsPromise = initLayer1Table();
     break;
   case 'layer2':
-    gridOptionsPromise = renderLayer2Table();
+    gridOptionsPromise = initLayer2Table();
     break;
   case 'layer3':
-    gridOptionsPromise = renderLayer3Table();
+    gridOptionsPromise = initLayer3Table();
     break;
 }
 
 // js-layer1.json
-async function renderLayer1Table() {
+async function initLayer1Table() {
 
   let data = await layer1DataPromise;
   let props = Object.keys(data[0].properties);
@@ -80,7 +80,7 @@ async function renderLayer1Table() {
 }
 
 // bars.geojson
-async function renderLayer2Table() {
+async function initLayer2Table() {
 
   let data = await layer2DataPromise;
   let props = Object.keys(data[0].properties);
@@ -125,7 +125,7 @@ async function renderLayer2Table() {
 }
 
 // portals.csv
-async function renderLayer3Table() {
+async function initLayer3Table() {
 
   let data = await layer3DataPromise;
   let columnDefs = [];

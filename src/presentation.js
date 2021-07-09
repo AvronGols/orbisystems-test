@@ -1,4 +1,4 @@
-import {map, layer1Group, layer2Group, layer3Group} from "./init_map";
+import {map, layer1Group, layer2Group, layer3Group} from "./map";
 
 let lastIndex = 0;
 let play = document.querySelector(".presentation");
