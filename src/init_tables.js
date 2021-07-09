@@ -1,33 +1,35 @@
 import {map, layer1Group, layer2Group, layer3Group} from "./init_map";
 import {layer1DataPromise, layer2DataPromise, layer3DataPromise} from "./load_data";
 
+export let gridOptionsPromise;
+
 map.on('baselayerchange', function(e) {
-    const eGridDiv = document.getElementById('grid');
-    while (eGridDiv.firstChild) {
-      eGridDiv.removeChild(eGridDiv.lastChild);
-    }
-    switch(e.name) {
-      case 'layer1':
-        renderLayer1Table();
-        break;
-      case 'layer2':
-        renderLayer2Table();
-        break;
-      case 'layer3':
-        renderLayer3Table();
-        break;
-    }
-  });
+  const eGridDiv = document.getElementById('grid');
+  while (eGridDiv.firstChild) {
+    eGridDiv.removeChild(eGridDiv.lastChild);
+  }
+  switch(e.name) {
+    case 'layer1':
+      gridOptionsPromise = renderLayer1Table();
+      break;
+    case 'layer2':
+      gridOptionsPromise = renderLayer2Table();
+      break;
+    case 'layer3':
+      gridOptionsPromise = renderLayer3Table();
+      break;
+  }
+});
   
 switch(localStorage.getItem("activeBaseLayer")) {
   case 'layer1':
-    renderLayer1Table();
+    gridOptionsPromise = renderLayer1Table();
     break;
   case 'layer2':
-    renderLayer2Table();
+    gridOptionsPromise = renderLayer2Table();
     break;
   case 'layer3':
-    renderLayer3Table();
+    gridOptionsPromise = renderLayer3Table();
     break;
 }
 
@@ -70,13 +72,11 @@ async function renderLayer1Table() {
       })
     }
   };
-  new agGrid.Grid(eGridDiv, gridOptions);
 
+  new agGrid.Grid(eGridDiv, gridOptions);
   gridOptions.api.sizeColumnsToFit();
-  let input = document.querySelector('#filter-text-box');
-  input.addEventListener('input', e => {
-    gridOptions.api.setQuickFilter(document.getElementById('filter-text-box').value);
-  })
+
+  return new Promise((resolve) => resolve(gridOptions));
 }
 
 // bars.geojson
@@ -119,12 +119,9 @@ async function renderLayer2Table() {
       }
   };
   new agGrid.Grid(eGridDiv, gridOptions);
-
   gridOptions.api.sizeColumnsToFit();
-  let input = document.querySelector('#filter-text-box');
-  input.addEventListener('input', e => {
-    gridOptions.api.setQuickFilter(document.getElementById('filter-text-box').value);
-  })
+  
+  return new Promise((resolve) => resolve(gridOptions));
 }
 
 // portals.csv
@@ -162,10 +159,7 @@ async function renderLayer3Table() {
       }
   };
   new agGrid.Grid(eGridDiv, gridOptions);
-  
   gridOptions.api.sizeColumnsToFit();
-  let input = document.querySelector('#filter-text-box');
-  input.addEventListener('input', e => {
-    gridOptions.api.setQuickFilter(document.getElementById('filter-text-box').value);
-  })
+  
+  return new Promise((resolve) => resolve(gridOptions));
 }
