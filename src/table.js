@@ -22,7 +22,9 @@ map.on('baselayerchange', function(e) {
   }
 });
   
-switch(localStorage.getItem("activeBaseLayer")) {
+const hashArray = window.location.hash.split('/');
+let activeBaseLayer = hashArray[3];
+switch(activeBaseLayer) {
   case 'layer1':
     gridOptionsPromise = initLayer1Table();
     break;
@@ -156,7 +158,6 @@ async function initLayer3Table() {
     rowData: rowData,
 
     onRowClicked: function(e) {
-        console.log(e);
         layer3Group.eachLayer((layer) => {
           const coords = layer.getLatLng()
           if (coords.lat == e.data.lat && coords.lng == e.data.lon) {

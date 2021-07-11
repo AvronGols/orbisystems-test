@@ -4,21 +4,28 @@ import {stopPresentation} from "./presentation"
 
 map.on('baselayerchange', function(e) {
   document.getElementById('filter-text-box').value = "";
-  localStorage.setItem("filterValue", "");
+
+  const hashArray = window.location.hash.split('/');
+  hashArray[4] = '';
+  window.location.hash = hashArray.join('/');
+
   initFilter()
 });
 
 let input = document.querySelector('#filter-text-box');
 input.addEventListener('input', async () => {
   
-  localStorage.setItem("filterValue", document.getElementById('filter-text-box').value);
+  const hashArray = window.location.hash.split('/');
+  hashArray[4] = document.getElementById('filter-text-box').value;
+  window.location.hash = hashArray.join('/');
+
   stopPresentation();
 
   let gridOptions = await gridOptionsPromise;
   gridOptions.api.setQuickFilter(document.getElementById('filter-text-box').value);
-  
-  let activeLayer = localStorage.getItem("activeBaseLayer");
-  switch (activeLayer) {
+
+  let activeBaseLayer = hashArray[3];
+  switch (activeBaseLayer) {
     case "layer1":
       layer1MapFilter(gridOptions);
       break;
@@ -34,13 +41,15 @@ input.addEventListener('input', async () => {
 async function initFilter() {
   let gridOptions = await gridOptionsPromise;
 
-	if (localStorage.getItem("filterValue") != null) {
+  const hashArray = window.location.hash.split('/');
+  let filter = hashArray[3];
+	if (filter != null) {
 
-		document.getElementById('filter-text-box').value = localStorage.getItem("filterValue");
+		document.getElementById('filter-text-box').value = hashArray[4];
 		gridOptions.api.setQuickFilter(document.getElementById('filter-text-box').value);
 
-    let activeLayer = localStorage.getItem("activeBaseLayer");
-    switch (activeLayer) {
+    let activeBaseLayer = hashArray[3];
+    switch (activeBaseLayer) {
       case "layer1":
         layer1MapFilter(gridOptions);
         break;

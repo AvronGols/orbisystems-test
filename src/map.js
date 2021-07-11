@@ -20,24 +20,35 @@ L.tileLayer(
   }
 ).addTo(map);
 
-let centerLat = localStorage.getItem("centerLat");
-let centerLng = localStorage.getItem("centerLng");
-let zoom = localStorage.getItem("zoom");
+let centerLat = 51.505;
+let centerLng = -0.09;
+let zoom = 13;
+let activeBaseLayer = 'layer1';
+let filter = '';
 
-if (centerLat != null && centerLng != null && zoom != null) {
-  map.setView([centerLat, centerLng], zoom);
-} else {
-  map.setView([51.505, -0.09], 12);
+if (window.location.hash) {
+  const hashArray = window.location.hash.split('/');
+  centerLat = hashArray[0].slice(1);
+  centerLng = hashArray[1];
+  zoom = hashArray[2];
+  activeBaseLayer = hashArray[3];
+  filter = hashArray[4];
 }
+map.setView([centerLat, centerLng], zoom);
 
 map.on("moveend", function(e) {
-  localStorage.setItem("centerLat", map.getCenter().lat);
-  localStorage.setItem("centerLng", map.getCenter().lng);
-  localStorage.setItem("zoom", map.getZoom());
+  centerLat = map.getCenter().lat;
+  centerLng = map.getCenter().lng;
+  zoom = map.getZoom();
+  window.location.hash = `${centerLat}/${centerLng}/${zoom}/${activeBaseLayer}/${filter}`;
 });
 
 map.on("baselayerchange", function(e) {
-  localStorage.setItem("activeBaseLayer", e.name);
+
+  const hashArray = window.location.hash.split('/');
+  hashArray[3] = e.name;
+  activeBaseLayer = e.name;
+  window.location.hash = hashArray.join('/');
 
   let layers = [] 
   switch(e.name) {
@@ -73,7 +84,7 @@ async function initLayer1Group() {
     );
   });
 
-  if (localStorage.getItem("activeBaseLayer") == "layer1") {
+  if (activeBaseLayer == "layer1") {
     layer1Group.addTo(map);
   }
 
@@ -94,7 +105,7 @@ async function initLayer2Group() {
     );
   });
 
-  if (localStorage.getItem("activeBaseLayer") == "layer2") {
+  if (activeBaseLayer == "layer2") {
     layer2Group.addTo(map);
   }
 
@@ -115,7 +126,7 @@ async function initLayer3Group() {
     );
   });
 
-  if (localStorage.getItem("activeBaseLayer") == "layer3") {
+  if (activeBaseLayer == "layer3") {
     layer3Group.addTo(map);
   }
 

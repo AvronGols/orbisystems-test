@@ -17,8 +17,9 @@ play.addEventListener("click", (e) => {
 
 function showPresentation() {
   const layers = [];
-  let tableName = localStorage.getItem("activeBaseLayer");
-  switch (tableName) {
+  const hashArray = window.location.hash.split('/');
+  let activeBaseLayer = hashArray[3];
+  switch (activeBaseLayer) {
     case "layer1":
       layer1Group.eachLayer((layer) => layers.push(layer));
       break;
