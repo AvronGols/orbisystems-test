@@ -20,9 +20,9 @@ L.tileLayer(
   }
 ).addTo(map);
 
-let centerLat = 51.505;
-let centerLng = -0.09;
-let zoom = 13;
+let centerLat = 53.330872983017066;
+let centerLng = 49.52911376953125;
+let zoom = 9;
 let activeBaseLayer = 'layer1';
 let filter = '';
 
@@ -34,7 +34,9 @@ if (window.location.hash) {
   activeBaseLayer = hashArray[3];
   filter = hashArray[4];
 }
+window.location.hash = `${centerLat}/${centerLng}/${zoom}/${activeBaseLayer}/${filter}`;
 map.setView([centerLat, centerLng], zoom);
+
 
 map.on("moveend", function(e) {
   centerLat = map.getCenter().lat;
