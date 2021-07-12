@@ -45,7 +45,7 @@ async function initFilter() {
   let filter = hashArray[3];
 	if (filter != null) {
 
-		document.getElementById('filter-text-box').value = hashArray[4];
+		document.getElementById('filter-text-box').value = decodeURI(hashArray[4]);
 		gridOptions.api.setQuickFilter(document.getElementById('filter-text-box').value);
 
     let activeBaseLayer = hashArray[3];
