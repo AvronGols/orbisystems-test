@@ -92,7 +92,6 @@ async function initLayer1Group() {
 
   layerControl.addBaseLayer(layer1Group, "layer1");
 }
-initLayer1Group();
 
 // bars.geojson
 async function initLayer2Group() {
@@ -113,7 +112,6 @@ async function initLayer2Group() {
 
   layerControl.addBaseLayer(layer2Group, "layer2");
 }
-initLayer2Group();
 
 // portals.csv
 async function initLayer3Group() {
@@ -134,4 +132,10 @@ async function initLayer3Group() {
 
   layerControl.addBaseLayer(layer3Group, "layer3");
 }
-initLayer3Group();
+
+async function initAllLayers() {
+  await initLayer1Group();
+  await initLayer2Group();
+  await initLayer3Group();
+}
+initAllLayers();
