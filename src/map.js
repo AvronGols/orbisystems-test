@@ -39,6 +39,8 @@ map.setView([centerLat, centerLng], zoom);
 
 
 map.on("moveend", function(e) {
+  const hashArray = window.location.hash.split('/');
+  filter = hashArray[4];
   centerLat = map.getCenter().lat;
   centerLng = map.getCenter().lng;
   zoom = map.getZoom();

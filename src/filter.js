@@ -2,14 +2,14 @@ import {map, layer1Group, layer2Group, layer3Group} from "./map";
 import {gridOptionsPromise} from "./table" 
 import {stopPresentation} from "./presentation"
 
-map.on('baselayerchange', function(e) {
+map.on('baselayerchange', function() {
   document.getElementById('filter-text-box').value = "";
 
   const hashArray = window.location.hash.split('/');
   hashArray[4] = '';
   window.location.hash = hashArray.join('/');
 
-  initFilter()
+  initFilter();
 });
 
 let input = document.querySelector('#filter-text-box');
@@ -42,7 +42,7 @@ async function initFilter() {
   let gridOptions = await gridOptionsPromise;
 
   const hashArray = window.location.hash.split('/');
-  let filter = hashArray[3];
+  let filter = hashArray[4];
 	if (filter != null) {
 
 		document.getElementById('filter-text-box').value = decodeURI(hashArray[4]);
