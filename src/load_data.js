@@ -8,7 +8,6 @@ export let layer3DataPromise = loadLayer3Data();
 async function loadLayer1Data() {
   return new Promise((resolve) => {
     axios.get("js-layer1.json").then((response) => {
-      console.log(response.data.features);
       resolve(response.data.features);
     });
   });
@@ -18,7 +17,6 @@ async function loadLayer1Data() {
 async function loadLayer2Data() {
   return new Promise((resolve) => {
     axios.get("bars.geojson").then((response) => {
-      console.log(response.data.features);
       resolve(response.data.features);
     });
   });
@@ -33,7 +31,6 @@ async function loadLayer3Data() {
       responseType: "text",
     }).then((response) => {
       let data = CSVToJSON(response.data);
-      console.log(data);
       resolve(data);
     });
   });

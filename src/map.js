@@ -1,22 +1,18 @@
 import {layer1DataPromise, layer2DataPromise, layer3DataPromise} from "./load_data";
 import {stopPresentation} from "./presentation"
 
-export let map = L.map("mapid", {preferCanvas: true});
-export let layerControl = L.control.layers().addTo(map);
-export let layer1Group = L.layerGroup();
-export let layer2Group = L.layerGroup();
-export let layer3Group = L.layerGroup();
+export const map = L.map("mapid", {preferCanvas: true});
+export const layerControl = L.control.layers().addTo(map);
+export const layer1Group = L.layerGroup();
+export const layer2Group = L.layerGroup();
+export const layer3Group = L.layerGroup();
 
 L.tileLayer(
-  "https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw",
+  "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
   {
     maxZoom: 18,
-    attribution:
-      'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, ' +
-      'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
-    id: "mapbox/streets-v11",
-    tileSize: 512,
-    zoomOffset: -1,
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+    tileSize: 256
   }
 ).addTo(map);
 
